@@ -435,7 +435,7 @@ def show_splashscreen():
 def start_game():
     global player, objects
     global game_state, player_action
-    fighter_component = Fighter(hp=30, defense=2, power=5,
+    fighter_component = Fighter(hp=300, defense=2, power=5,
             death_function = player_death)
     player = Object(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, '@', tcod.white, 
             'player', blocks=True, fighter=fighter_component, speed=PLAYER_SPEED)
