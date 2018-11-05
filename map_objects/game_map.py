@@ -3,6 +3,10 @@ from map_objects.rectangle import Rect
 from random import randint
 import libtcodpy as libtcod
 from entity import Entity
+from render_functions import RenderOrder
+
+from components.ai import BasicMonster
+from components.fighter import Fighter
 
 
 class GameMap:
@@ -104,11 +108,19 @@ class GameMap:
                 entity.x == x and entity.y == y]):
 
                 if randint(0, 100) < 80:
+                    fighter_component = Fighter(hp=10, defense=0, power=3)
+                    ai_component = BasicMonster();
                     monster = Entity(x, y, 'C', libtcod.desaturated_green,
-                            'cat', blocks=True)
+                            'cat', blocks=True, render_order=RenderOrder.ACTOR,
+                            fighter=fighter_component,
+                            ai=ai_component)
                 else:
+                    fighter_component = Fighter(hp=16, defense=1, power=4)
+                    ai_component = BasicMonster();
                     monster = Entity(x, y, 'D', libtcod.darker_green,
-                            'dog', blocks=True)
+                            'dog', blocks=True, render_order=RenderOrder.ACTOR,
+                            fighter=fighter_component,
+                            ai=ai_component)
 
                 entities.append(monster)
 
